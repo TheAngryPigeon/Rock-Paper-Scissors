@@ -1,10 +1,11 @@
-console.log("Hi")
+
 
 const options = ["rock", "paper","scissors"];
 
 function getComputerChoice(){
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
+    
 }
 
 function checkWinner(playerSelection, computerSelection) {
@@ -35,9 +36,36 @@ function playRound(playerSelection, computerSelection){
         return `You Lose! ${computerSelection} beats ${playerSelection}`
 
     }
-  
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log (playRound(playerSelection, computerSelection)); 
+    
+    function getPlayerChoice(){
+        let validatedInput = false;
+        while(validatedInput == false){
+            const choice = prompt("Rock Paper Scissors");
+            if (choice == null){
+                continue;
+            }
+            const choiceInLower = choice.toLowerCase();
+            if(options.includes(choiceInLower)){
+                validatedInput = true;
+                return choiceInLower;
+            }
+        }
+    }
+    
+    
+    function game(){
+        console.log("Welcome!")
+        for (let i = 0; i < 5; i++){}
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+        console.log(playRound(playerSelection, computerSelection));
+    }
+
+
+game()
+
+
+
 
 getComputerChoice();
